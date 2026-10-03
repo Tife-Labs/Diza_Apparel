@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Taken from the logo: paper #F1F1F1, ink #212121 */
+    --background: 0 0% 94.5%;
+    --foreground: 0 0% 12.9%;
+    --muted: 0 0% 90%;
+    --muted-foreground: 0 0% 36%;
+    --border: 0 0% 80%;
+    --input: 0 0% 60%;
+    --primary: 0 0% 12.9%;
+    --primary-foreground: 0 0% 94.5%;
+    --ring: 0 0% 12.9%;
+    --destructive: 0 70% 36%;
+    --destructive-foreground: 0 0% 98%;
+    /* The one accent: red tailor's thread. Change it here. */
+    --thread: 5 72% 42%;
+  }
+
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  * { @apply border-border; }
+  body { @apply bg-background font-sans text-foreground antialiased; }
+  ::selection { background: hsl(var(--foreground)); color: hsl(var(--background)); }
+}
+
+@layer components {
+  .stitch { border-top: 2px dashed hsl(var(--thread)); }
+  .stitch-draw { animation: stitch 1.8s cubic-bezier(0.6, 0, 0.2, 1) 0.2s both; }
+}
+
+@keyframes stitch {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+@media (prefers-reduced-motion: reduce) { .stitch-draw { animation: none; } }
